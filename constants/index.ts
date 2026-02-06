@@ -1,5 +1,3 @@
-import { User } from "lucide-react"
-
 export const ctaslider = [
   {
     id: 0, 
@@ -37,6 +35,35 @@ export const ctaslider = [
     image: "/cta5.jpeg"
   }
 ]
+// footer sections and social media links
+import { Mail, Phone } from 'lucide-react'
+import { FaFacebookSquare, FaInstagramSquare, FaTiktok, FaTwitterSquare, FaWhatsapp} from "react-icons/fa";
+
+export const footerSections = [
+  {
+    heading: 'company',
+    items: [
+      { label: 'About us', href: '#', icon: undefined },
+      { label: 'Our location', href: '#', icon: undefined },
+      { label: 'Book an appointment', href: '#', icon: undefined }
+    ]
+  },
+  {
+    heading: 'contact us',
+    items: [
+      { icon: Mail, label: 'info@buburuebihealthcare.com', href: 'mailto:info@buburuebihealthcare.com' },
+      { icon: Phone, label: '+234 907 616 7977', href: 'tel:+2349076167977' },
+      { icon: FaWhatsapp, label: 'Chat on Watsapp', href: 'https://wa.me/2349076167977' }
+    ]
+  }
+];
+
+export const socialMediaLinks = [
+  { icon: FaFacebookSquare, href: '#' },
+  { icon: FaTwitterSquare, href: '#' },
+  { icon: FaInstagramSquare, href: '#' },
+  { icon: FaTiktok, href: '#' }
+];
 
 export const feedbacks = [
   {

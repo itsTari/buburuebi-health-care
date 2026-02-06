@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins, Inter} from "next/font/google";
 import "./globals.css";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 
 
@@ -34,6 +35,7 @@ export default function RootLayout({
       >
       <Header />
         {children}
+        <Footer/>
     
       </body>
     </html>

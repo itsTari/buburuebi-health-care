@@ -13,19 +13,19 @@ const Header = () => {
 
   return (
     <nav
-     className="flex items-center justify-between  w-full px-6 md:px-10 py-4 bg-white">
-      <div className="w-1/2 md:w-1/4 flex items-center gap-6 p-2">
+     className="flex items-center fixed z-10 justify-between  w-full px-6 md:px-10 py-2 bg-white">
+      <div className="w-1/2 md:w-1/4 flex items-center gap-4 p-2">
       <Image src='/logo.jpeg' alt="logo" width={50} height={50}/>
       <Image src='/logo-text1.png' alt="logo-text1" width={200} height={50}/>
       </div>
-      <ul className="gap-4 hidden md:flex ">
-        <li className="hover:text-blue-800"><Link href="/" >Home</Link></li>
-        <li className="hover:text-blue-800"><Link href="/about">About</Link></li>
-        <li className="hover:text-blue-800"><Link href="/contact">Contact</Link></li>
-        <li className="hover:text-blue-800"><Link href="/services">Our services</Link></li>
+      <ul className="gap-4 hidden md:flex text-gray-700 ">
+        <li className="hover:text-blue-800"><Link href="/" ><h1>Home</h1></Link></li>
+        <li className="hover:text-blue-800"><Link href="/about"><h1>About</h1></Link></li>
+        <li className="hover:text-blue-800"><Link href="/services"><h1>Our services</h1></Link></li>
+        <li className="hover:text-blue-800"><Link href="/contact"><h1>Contact</h1></Link></li>
       </ul>
 
-      <button onClick={toggleSidebar} className={`md:hidden transition-colors duration-2 p-4 rounded-md shadow-sm ${openSidebar ? "bg-blue-800 text-white" : "bg-slate-100 text-black"}`}>
+      <button onClick={toggleSidebar} className={`md:hidden transition-colors duration-2 p-3 rounded-md shadow-sm ${openSidebar ? "bg-blue-800 text-white" : "bg-slate-100 text-black"}`}>
         <Menu />
       </button>
       

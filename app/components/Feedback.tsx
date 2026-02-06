@@ -14,7 +14,7 @@ const Feedback = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const displayedFeedbacks = [...feedbacks, ...feedbacks]; // Duplicate for seamless loop
+  const displayedFeedbacks = [...feedbacks, ...feedbacks];
 
   const renderStars = (rating: number) => {
     return (
@@ -31,7 +31,7 @@ const Feedback = () => {
   return (
     <section className="w-full py-12 px-4 md:px-8">
       <div className="text-center pb-12">
-        <h2 className="text-4xl md:text-5xl font-bold text-blue-800 mb-4">
+        <h2 className="text-2xl md:text-4xl font-bold text-blue-800 mb-4">
           What Our Patients Say
         </h2>
         <p className="text-sm sm:text-lg max-w-2xl mx-auto">
@@ -51,21 +51,15 @@ const Feedback = () => {
           {displayedFeedbacks.map((feedback, index) => (
             <div
               key={index}
-              className="shrink-0 w-full sm:w-80 bg-gray-100 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
+              className="shrink-0 w-full sm:w-90 bg-gray-100 rounded-xl p-6 shadow-md"
             >
-              {/* Star Rating */}
-              <div className="mb-4">
+              <div className="pb-4">
                 {renderStars(feedback.rating)}
               </div>
-
-              {/* Testimony */}
-              <p className="text-gray-700 text-base leading-relaxed mb-6 min-h-20">
+              <p className=" text-base text-gray-700 leading-relaxed pb-6 ">
                 &ldquo;{feedback.testimony}&rdquo;
               </p>
-
-              {/* User Info */}
-              <div className="flex items-center gap-3 pt-4 border-t border-gray-300">
-                <span className="text-3xl"></span>
+              <div className="pt-4 border-t border-gray-300">
                 <span className="font-semibold text-gray-900">{feedback.userName}</span>
               </div>
             </div>
