@@ -35,7 +35,7 @@ const Footer = () => {
               </ul>
             ))}
             <ul className='flex flex-col gap-2 md:gap-3 py-2'>
-              <li className='font-extrabold pb-2 text-xs md:text-[16px]'>follow us on social media</li>
+              <li className='font-extrabold pb-2 text-xs md:text-[16px]'>Follow us on social media</li>
               <ul className='flex gap-4 text-gray-700'>
                 {socialMediaLinks.map((link, index) => {
                   const Icon = link.icon;

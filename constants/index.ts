@@ -1,7 +1,7 @@
 export const ctaslider = [
   {
     id: 0, 
-    text: "You want a Consultation?",
+     text: "You want a Consultation?",
     subtext: "Connect with experienced healthcare professionals at your convenience",
     cta: "Book an Appointment Now!",
     image: "/cta1.jpeg"
@@ -30,9 +30,10 @@ export const ctaslider = [
   {
     id: 4,
     text: "Organisations partner with us for employee health plans and for improved healthcare delivery",
-    subtext:" message us @info.com",
+    subtext:"message us for partnership and collaboration opportunities",
     cta: "Get in Touch with us!",
-    image: "/cta5.jpeg"
+    image: "/cta5.jpeg",
+    // href: 'mailto:info@buburuebihealthcare.com'
   }
 ]
 // footer sections and social media links
@@ -41,7 +42,7 @@ import { FaFacebookSquare, FaInstagramSquare, FaTiktok, FaTwitterSquare, FaWhats
 
 export const footerSections = [
   {
-    heading: 'company',
+    heading: 'Company',
     items: [
       { label: 'About us', href: '#', icon: undefined },
       { label: 'Our location', href: '#', icon: undefined },
@@ -49,7 +50,7 @@ export const footerSections = [
     ]
   },
   {
-    heading: 'contact us',
+    heading: 'Contact us',
     items: [
       { icon: Mail, label: 'info@buburuebihealthcare.com', href: 'mailto:info@buburuebihealthcare.com' },
       { icon: Phone, label: '+234 907 616 7977', href: 'tel:+2349076167977' },
@@ -95,5 +96,56 @@ export const feedbacks = [
     rating: 5,
     testimony: "Fantastic experience with the full body checkup service. The results were detailed and the follow-up consultations were incredibly helpful. Highly satisfied!",
     userName: "Jessica Williams",
+  }
+]
+
+export const services = [
+  {
+    id: 1,
+    title: "Dental Services",
+    subtitle: "Professional dental care for a healthy smile",
+    description: "From routine cleanings to advanced treatments, our dental experts provide comprehensive oral healthcare solutions.",
+    image: "/cta6.jpeg",
+    cta: "Book appointment"
+  },
+  {
+    id: 2,
+    title: "Pharmaceutical Services",
+    subtitle: "Quality medications delivered to your doorstep",
+    description: "Access a wide range of prescription and over-the-counter medications with professional guidance from our pharmacists.",
+    image: "/cta4.jpeg",
+    cta: "Place an order"
+  },
+  {
+    id: 3,
+    title: "Consultations & Counselling",
+    subtitle: "Expert medical advice and mental health support",
+    description: "Connect with experienced healthcare professionals for personalized consultations and professional counselling services.",
+    image: "/cta1.jpeg",
+    cta: "Book appointment"
+  },
+  {
+    id: 4,
+    title: "Treatments & Patient Management",
+    subtitle: "Comprehensive treatment plans tailored for you",
+    description: "Receive expert treatment and ongoing patient management for various medical conditions with continuous care.",
+    image: "/cta2.jpeg",
+    cta: "Book appointment"
+  },
+  {
+    id: 5,
+    title: "Medical Laboratory Services",
+    subtitle: "Accurate diagnostics for better health insights",
+    description: "Advanced laboratory testing and diagnostic services to help identify and monitor your health conditions effectively.",
+    image: "/cta7.jpeg",
+    cta: "Book appointment today"
+  },
+  {
+    id: 6,
+    title: "Prescription & Recommendation Services",
+    subtitle: "Personalized health recommendations from experts",
+    description: "Receive expert-prescribed medications and personalized health recommendations based on your specific medical needs.",
+    image: "/cta3.jpeg",
+    cta: "Book appointment"
   }
 ]
