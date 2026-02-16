@@ -1,3 +1,6 @@
+import { Heart, Mail, Phone, Star, Zap, Shield, Leaf } from 'lucide-react'
+import { FaFacebookSquare, FaInstagramSquare, FaTiktok, FaTwitterSquare, FaWhatsapp} from "react-icons/fa";
+
 export const ctaslider = [
   {
     id: 0, 
@@ -36,10 +39,8 @@ export const ctaslider = [
     // href: 'mailto:info@buburuebihealthcare.com'
   }
 ]
-// footer sections and social media links
-import { Mail, Phone } from 'lucide-react'
-import { FaFacebookSquare, FaInstagramSquare, FaTiktok, FaTwitterSquare, FaWhatsapp} from "react-icons/fa";
 
+// footer sections and social media links
 export const footerSections = [
   {
     heading: 'Company',
@@ -149,3 +150,38 @@ export const services = [
     cta: "Book appointment"
   }
 ]
+
+// about us page 
+export const values = [
+    {
+      icon: Heart,
+      title: "Patient-Centric Care",
+      description: "Your health and comfort are at the center of everything we do. We listen, we care, and we act."
+    },
+    {
+      icon: Star,
+      title: "Excellence & Expertise",
+      description: "Our team consists of highly qualified and experienced healthcare professionals dedicated to your wellness."
+    },
+    {
+      icon: Zap,
+      title: "Affordability & Accessibility",
+      description: "Quality healthcare should be accessible to everyone. We ensure our services are affordable without compromising quality."
+    },
+    {
+      icon: Zap,
+      title: "Innovation & Technology",
+      description: "We leverage modern technology to provide efficient, accurate, and timely healthcare solutions."
+    },
+    {
+      icon: Shield,
+      title: "Trust & Integrity",
+      description: "Your trust is our most valuable asset. We operate with absolute transparency and professional integrity."
+    },
+    {
+      icon: Leaf,
+      title: "Holistic Wellness",
+      description: "We believe in treating the whole person, not just symptoms. Our approach encompasses physical, mental, and emotional health."
+    }
+  ]
+

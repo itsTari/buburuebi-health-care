@@ -2,46 +2,15 @@
 
 import React, { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { CheckCircle2, Heart, Star, Zap, Shield, Leaf } from 'lucide-react'
+import { CheckCircle2 } from 'lucide-react'
+import { values } from '../../constants'
 
 const AboutPage = () => {
   const [scrollProgress, setScrollProgress] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
 
-  const values = [
-    {
-      icon: Heart,
-      title: "Patient-Centric Care",
-      description: "Your health and comfort are at the center of everything we do. We listen, we care, and we act."
-    },
-    {
-      icon: Star,
-      title: "Excellence & Expertise",
-      description: "Our team consists of highly qualified and experienced healthcare professionals dedicated to your wellness."
-    },
-    {
-      icon: Zap,
-      title: "Affordability & Accessibility",
-      description: "Quality healthcare should be accessible to everyone. We ensure our services are affordable without compromising quality."
-    },
-    {
-      icon: Zap,
-      title: "Innovation & Technology",
-      description: "We leverage modern technology to provide efficient, accurate, and timely healthcare solutions."
-    },
-    {
-      icon: Shield,
-      title: "Trust & Integrity",
-      description: "Your trust is our most valuable asset. We operate with absolute transparency and professional integrity."
-    },
-    {
-      icon: Leaf,
-      title: "Holistic Wellness",
-      description: "We believe in treating the whole person, not just symptoms. Our approach encompasses physical, mental, and emotional health."
-    }
-  ]
-
+  
   useEffect(() => {
     const handleScroll = () => {
       if (!gridRef.current) return
@@ -68,17 +37,15 @@ const AboutPage = () => {
     }
 
     window.addEventListener('scroll', handleScroll)
-    handleScroll() // Call once on mount
+    handleScroll() 
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
     <div className='w-full'>
-      {/* Hero Section with Founder */}
       <section className='w-full pt-30 pb-16 md:pb-24 px-5 md:px-10'>
         <div className='max-w-6xl mx-auto'>
           <div className='flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-center'>
-            {/* Text Content */}
             <div className='animate-fade-in md:flex-1'>
               <h1 className='text-4xl md:text-5xl font-bold text-gray-900 mb-6'>
                 Nice to meet you
@@ -164,18 +131,17 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Core Values Section with Timeline */}
+      {/* Core Values Section*/}
       <section ref={sectionRef} className='w-full py-16 md:py-24 px-5 md:px-10'>
         <div className='mx-auto'>
           <div ref={gridRef} className='grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start'>
-            {/* Heading - Left side on desktop */}
-            <div className=''>
-              <h2 className='text-3xl md:text-4xl font-bold text-gray-800 mb-6 md:mb-0'>
+            <div className='flex flex-col md:gap-5 gap-2 '>
+              <h6 className='text-blue-800 text-sm font-semibold uppercase tracking-wider'>Our Service Difference</h6>
+              <h2 className='text-xl md:text-4xl font-bold text-gray-700 mb-6 md:mb-0'>
                 Here&apos;s All The Ways We&apos;re Different
               </h2>
             </div>
-
-            {/* Timeline - Right side on desktop */}
+            
             <div className='relative'>
               {/* Vertical Lines */}
               <div className='hidden md:block absolute left-6 top-0 bottom-0 w-0.5'>
@@ -201,14 +167,16 @@ const AboutPage = () => {
                     >
                       {/* Icon Container */}
                       <div className='shrink-0 md:absolute md:left-0 flex items-start'>
-                        <div className='w-14 h-14 bg-blue-100 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow duration-300'>
-                          <Icon size={28} className='text-blue-600' />
+                        <div className='w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow duration-300'>
+                          <div className='w-9 h-9 bg-blue-200 rounded-full flex items-center justify-center'>
+                            <Icon size={20} className='text-blue-600'/>
+                          </div>
                         </div>
                       </div>
 
                       {/* Content */}
                       <div className='flex-1 pt-1 md:pt-0'>
-                        <h3 className='text-xl md:text-2xl font-medium text-gray-800 mb-2'>
+                        <h3 className='text-sm md:text-xl font-bold text-gray-800 md:text-gray-700 mb-2'>
                           {value.title}
                         </h3>
                         <p className='text-gray-700 leading-relaxed'>
@@ -224,7 +192,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Call to Action */}
       <section className='w-full py-16 md:py-24 px-5 md:px-10 bg-blue-800'>
         <div className='max-w-4xl mx-auto text-center'>
           <h2 className='text-3xl md:text-4xl font-bold text-white mb-6'>

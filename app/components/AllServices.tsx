@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { Button } from './ui/button';
 import { services } from '@/constants';
 import { useState } from 'react';
+import Link from 'next/link';
 
 const AllServices = () => {
   const [hoveredId, setHoveredId] = useState<number | null>(null);
@@ -59,8 +60,7 @@ const AllServices = () => {
                 >
                   <Button
                     className='w-full bg-blue-800 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:shadow-lg'
-                  >
-                    {service.cta}
+                  ><Link href='#'>{service.cta}</Link>
                   </Button>
                 </div>
               </div>

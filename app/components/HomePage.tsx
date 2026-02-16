@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const HomePage = () => {
   return (
-    <section style={{backgroundImage: 'url(/doc.jpeg)'}}  className="relative min-h-screen flex items-center p-10 bg-cover bg-center">
+    <section style={{backgroundImage: 'url(/doc.jpeg)'}}  className="relative min-h-screen flex items-center p-10 bg-cover bg-center bg-no-repeat">
        <div className="absolute inset-0 bg-black opacity-30"></div>
        <div className="relative flex flex-col gap-4 md:gap-5 items-center md:items-start text-center md:text-left  md:w-1/2 ">
           <h1 className='text-4xl md:text-6xl font-bold text-white' >BUBURUEBI BRIGHTERLIFE HEALTH CARE SERVICE</h1>

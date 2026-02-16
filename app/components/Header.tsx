@@ -3,11 +3,13 @@ import Link from "next/link"
 import { useState, useEffect, useRef } from "react"
 import { Menu} from "lucide-react"
 import Image from "next/image"
+import { usePathname } from "next/navigation"
 
 const Header = () => {
   const [openSidebar, setOpenSidebar] = useState(false)
   const sidebarRef = useRef<HTMLDivElement>(null)
   const buttonRef = useRef<HTMLButtonElement>(null)
+  const pathname = usePathname()
   
   const toggleSidebar = () => {
     setOpenSidebar(prev => !prev)
@@ -32,7 +34,7 @@ const Header = () => {
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [openSidebar])
+  }, [openSidebar, pathname])
 
   return (
     <nav
@@ -41,17 +43,17 @@ const Header = () => {
       <Image src='/logo.jpeg' alt="logo" width={50} height={50}/>
       <Image src='/logo-text1.png' alt="logo-text1" width={200} height={50}/>
       </div>
-      <ul className="gap-4 hidden md:flex ">
-        <li className="hover:text-blue-800"><Link href="/" >Home</Link></li>
-        <li className="hover:text-blue-800"><Link href="/about">About</Link></li>
-        <li className="hover:text-blue-800"><Link href="/services">Our services</Link></li>
-        <li className="hover:text-blue-800"><Link href="/contact">Contact</Link></li>
+      <ul className="gap-4 hidden md:flex text-gray-800 text-xl ">
+        <li className="hover:text-blue-800"><Link href="/" className={pathname === '/' ? 'text-blue-700 font-semibold' : ''} >Home</Link></li>
+        <li className="hover:text-blue-800"><Link href="/about" className={pathname === '/about' ? 'text-blue-700 font-semibold' : ''}>About</Link></li>
+        <li className="hover:text-blue-800"><Link href="/services" className={pathname === '/services' ? 'text-blue-700 font-semibold' : ''}>Our services</Link></li>
+        {/* <li className="hover:text-blue-800"><Link href="/contact" className={pathname === '/contact' ? 'text-blue-700 font-semibold' : ''}>Contact</Link></li> */}
       </ul>
 
       <button 
         ref={buttonRef}
         onClick={toggleSidebar} 
-        className={`md:hidden transition-colors duration-2 p-3 rounded-md shadow-sm ${openSidebar ? "bg-blue-800 text-white" : "bg-slate-100 text-black"}`}
+        className={`md:hidden transition-colors duration-2 p-3 rounded-md shadow-sm ${openSidebar ? "bg-blue-800 text-white" : "bg-gray-100 text-blue-800"}`}
       >
         <Menu />
       </button>
@@ -67,11 +69,11 @@ const Header = () => {
           : "opacity-0 -translate-y-5 pointer-events-none"
         }`}
       >
-        <ul className="flex flex-col gap-7 px-6 py-8 ">
-          <li className="hover:text-blue-800" onClick={toggleSidebar}><Link href="/">Home</Link></li>
-          <li className="hover:text-blue-800" onClick={toggleSidebar}><Link href="/about">About</Link></li>
-          <li className="hover:text-blue-800" onClick={toggleSidebar}><Link href="/services">Our services</Link></li>
-          <li className="hover:text-blue-800" onClick={toggleSidebar}><Link href="/contact">Contact</Link></li>
+        <ul className="flex flex-col gap-7 px-6 py-8 text-gray-800 text-lg ">
+          <li className="hover:text-blue-800" onClick={toggleSidebar}><Link href="/" className={pathname === '/' ? 'text-blue-700 font-semibold' : ''}>Home</Link></li>
+          <li className="hover:text-blue-800" onClick={toggleSidebar}><Link href="/about" className={pathname === '/about' ? 'text-blue-700 font-semibold' : ''}>About</Link></li>
+          <li className="hover:text-blue-800" onClick={toggleSidebar}><Link href="/services" className={pathname === '/services' ? 'text-blue-700 font-semibold' : ''}>Our services</Link></li>
+          {/* <li className="hover:text-blue-800" onClick={toggleSidebar}><Link href="/contact" className={pathname === '/contact' ? 'text-blue-700 font-semibold' : ''}>Contact</Link></li> */}
         </ul>
       </div>
     </nav>
