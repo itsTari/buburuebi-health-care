@@ -107,7 +107,8 @@ export const services = [
     subtitle: "Professional dental care for a healthy smile",
     description: "From routine cleanings to advanced treatments, our dental experts provide comprehensive oral healthcare solutions.",
     image: "/cta6.jpeg",
-    cta: "Book appointment"
+    cta: "Book appointment",
+    serviceId: "dental"
   },
   {
     id: 2,
@@ -115,7 +116,8 @@ export const services = [
     subtitle: "Quality medications delivered to your doorstep",
     description: "Access a wide range of prescription and over-the-counter medications with professional guidance from our pharmacists.",
     image: "/cta4.jpeg",
-    cta: "Place an order"
+    cta: "Place an order",
+    serviceId: null
   },
   {
     id: 3,
@@ -123,7 +125,8 @@ export const services = [
     subtitle: "Expert medical advice and mental health support",
     description: "Connect with experienced healthcare professionals for personalized consultations and professional counselling services.",
     image: "/cta1.jpeg",
-    cta: "Book appointment"
+    cta: "Book appointment",
+    serviceId: "consultation"
   },
   {
     id: 4,
@@ -131,7 +134,8 @@ export const services = [
     subtitle: "Comprehensive treatment plans tailored for you",
     description: "Receive expert treatment and ongoing patient management for various medical conditions with continuous care.",
     image: "/cta2.jpeg",
-    cta: "Book appointment"
+    cta: "Book appointment",
+    serviceId: "Treatments&PatientManagement"
   },
   {
     id: 5,
@@ -139,7 +143,8 @@ export const services = [
     subtitle: "Accurate diagnostics for better health insights",
     description: "Advanced laboratory testing and diagnostic services to help identify and monitor your health conditions effectively.",
     image: "/cta7.jpeg",
-    cta: "Book appointment today"
+    cta: "Book appointment today",
+    serviceId: "laboratory"
   },
   {
     id: 6,
@@ -147,7 +152,8 @@ export const services = [
     subtitle: "Personalized health recommendations from experts",
     description: "Receive expert-prescribed medications and personalized health recommendations based on your specific medical needs.",
     image: "/cta3.jpeg",
-    cta: "Book appointment"
+    cta: "Book appointment",
+    serviceId: "Prescription&Recommendation"
   }
 ]
 

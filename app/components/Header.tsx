@@ -38,7 +38,7 @@ const Header = () => {
 
   return (
     <nav
-     className="flex fixed z-10 items-center justify-between  w-full px-6 md:px-10 md:py-4 p-2 bg-white">
+     className="flex fixed z-10 items-center justify-between  w-full px-6 md:px-10 md:py-4 p-2 h-18 bg-white">
       <div className="w-1/2 md:w-1/4 flex items-center gap-6 p-2">
       <Image src='/logo.jpeg' alt="logo" width={50} height={50}/>
       <Image src='/logo-text1.png' alt="logo-text1" width={200} height={50}/>

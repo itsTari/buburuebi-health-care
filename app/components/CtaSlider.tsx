@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { ctaslider } from '@/constants';
 import { Button } from '@/app/components/ui/button';
 
@@ -35,7 +36,13 @@ const CtaSlider = () => {
           <Button
             className=" w-full sm:w-fit  bg-white text-blue-800 hover:bg-gray-50 md:px-8 py-8 rounded-full transition-all duration-300"
           >
-            {slide.cta}
+            {slide.id === 0 ? (
+              <Link href="/appointments?service=laboratory">
+                {slide.cta}
+              </Link>
+            ) : (
+              <span>{slide.cta}</span>
+            )}
           </Button>
         </div>
 

@@ -60,7 +60,12 @@ const AllServices = () => {
                 >
                   <Button
                     className='w-full bg-blue-800 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:shadow-lg'
-                  ><Link href='#'>{service.cta}</Link>
+                  >
+                    {service.serviceId ? (
+                      <Link href={`/appointments?service=${service.serviceId}`}>{service.cta}</Link>
+                    ) : (
+                      <span>{service.cta}</span>
+                    )}
                   </Button>
                 </div>
               </div>
