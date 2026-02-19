@@ -107,7 +107,7 @@ export const services = [
     subtitle: "Professional dental care for a healthy smile",
     description: "From routine cleanings to advanced treatments, our dental experts provide comprehensive oral healthcare solutions.",
     image: "/cta6.jpeg",
-    cta: "Book appointment",
+    cta: "Book Appointment",
     serviceId: "dental"
   },
   {
@@ -116,7 +116,7 @@ export const services = [
     subtitle: "Quality medications delivered to your doorstep",
     description: "Access a wide range of prescription and over-the-counter medications with professional guidance from our pharmacists.",
     image: "/cta4.jpeg",
-    cta: "Place an order",
+    cta: "Place an Order",
     serviceId: null
   },
   {
@@ -125,7 +125,7 @@ export const services = [
     subtitle: "Expert medical advice and mental health support",
     description: "Connect with experienced healthcare professionals for personalized consultations and professional counselling services.",
     image: "/cta1.jpeg",
-    cta: "Book appointment",
+    cta: "Book Appointment",
     serviceId: "consultation"
   },
   {
@@ -134,8 +134,8 @@ export const services = [
     subtitle: "Comprehensive treatment plans tailored for you",
     description: "Receive expert treatment and ongoing patient management for various medical conditions with continuous care.",
     image: "/cta2.jpeg",
-    cta: "Book appointment",
-    serviceId: "Treatments&PatientManagement"
+    cta: "Book Appointment",
+    serviceId: "treatment"
   },
   {
     id: 5,
@@ -143,7 +143,7 @@ export const services = [
     subtitle: "Accurate diagnostics for better health insights",
     description: "Advanced laboratory testing and diagnostic services to help identify and monitor your health conditions effectively.",
     image: "/cta7.jpeg",
-    cta: "Book appointment today",
+    cta: "Book Appointment",
     serviceId: "laboratory"
   },
   {
@@ -152,9 +152,18 @@ export const services = [
     subtitle: "Personalized health recommendations from experts",
     description: "Receive expert-prescribed medications and personalized health recommendations based on your specific medical needs.",
     image: "/cta3.jpeg",
-    cta: "Book appointment",
-    serviceId: "Prescription&Recommendation"
-  }
+    cta: "Book Appointment",
+    serviceId: "prescription"
+  },
+  {
+    id: 7,
+    title: "Home Service",
+    subtitle: "Healthcare delivered right to your doorstep",
+    description: "Feeling sick and unable to visit? Our medical team comes to you. Available within Bayelsa State. A non-refundable deposit of ₦10,500 is required to confirm your booking.",
+    image: "/doc.jpeg",
+    cta: "Request Home Service",
+    serviceId: "home"
+  },
 ]
 
 // about us page 

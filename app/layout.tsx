@@ -34,6 +34,7 @@ export default function RootLayout({
         className={`${poppins.variable} ${inter.variable} font-sans`}
       >
       <Header />
+       <div className="h-18 md:h-22" />
         {children}
         <Footer/>
     
