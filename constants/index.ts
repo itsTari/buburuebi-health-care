@@ -7,28 +7,32 @@ export const ctaslider = [
      text: "You want a Consultation?",
     subtext: "Connect with experienced healthcare professionals at your convenience",
     cta: "Book an Appointment Now!",
-    image: "/cta1.jpeg"
+    image: "/cta1.jpeg",
+    serviceId: "consultation"
   },
   {
     id: 1, 
     text: "Do you feel unwell?",
     subtext: "Get immediate medical guidance anytime, day or night",
     cta: "Contact our 24/7 Support!",
-    image: "/cta2.jpeg"
+    image: "/cta2.jpeg",
+    serviceId: "prescription"
   },
   {
     id: 2,
     text: "Do you want to talk to a physician today?",
     subtext: "Skip the waiting room and get expert medical advice instantly",
     cta: "Talk to a Physician Now!",
-    image: "/cta3.jpeg"
+    image: "/cta3.jpeg",
+    serviceId: "consultation"
   },
   {
     id: 3,
     text: "Do you want to know your health status?",
     subtext: "Comprehensive diagnostics to monitor and maintain your wellbeing",
     cta: "Schedule a Full Body Checkup!",
-    image: "/cta4.jpeg"
+    image: "/cta4.jpeg",
+    serviceId: "laboratory"
   },
   {
     id: 4,

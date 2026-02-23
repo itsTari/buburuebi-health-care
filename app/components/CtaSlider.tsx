@@ -36,8 +36,8 @@ const CtaSlider = () => {
           <Button
             className=" w-full sm:w-fit  bg-white text-blue-800 hover:bg-gray-50 md:px-8 py-8 rounded-full transition-all duration-300"
           >
-            {slide.id === 0 ? (
-              <Link href="/appointments?service=laboratory">
+            {slide.serviceId ? (
+              <Link href={`/appointments?service=${slide.serviceId}`} className="w-full h-full flex items-center justify-center">
                 {slide.cta}
               </Link>
             ) : (

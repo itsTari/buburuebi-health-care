@@ -36,9 +36,11 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
     setValue,
     formState: { errors },
     reset,
+    handleSubmit,
   } = useForm<BookingFormValues>({
     resolver: zodResolver(bookingSchema),
     defaultValues: { serviceId: service.id },
+    mode: 'onChange', // Validate on every change
   })
 
   const selectedTest = watch('selectedTest')
@@ -128,7 +130,7 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
   }
 
   // Step navigation
-  const proceedToPayment = () => {
+  const proceedToPayment = handleSubmit(async () => {
     if (!isStep1Valid) {
       setError('Please fill in all required fields')
       return
@@ -148,7 +150,7 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
       },
     }))
     setError(null)
-  }
+  })
 
   const proceedToConfirmation = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -173,7 +175,7 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
     }
   }
 
-  const submitBooking = async (e: React.FormEvent) => {
+  const submitBooking = async (e: React.SubmitEvent) => {
     e.preventDefault()
     if (!bookingState.formData.name || !bookingState.formData.email) {
       setError('Missing required information')

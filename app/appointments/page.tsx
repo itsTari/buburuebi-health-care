@@ -9,7 +9,7 @@ interface AppointmentPageProps {
 export default async function AppointmentPage({ searchParams }: AppointmentPageProps) {
   const { service: serviceParam } = await searchParams
   const serviceId = serviceParam ? serviceParam.toLowerCase() : null
-  const service = bookingServices[serviceId]
+  const service = bookingServices[serviceId as string]
 
   if (!service) {
     notFound()
