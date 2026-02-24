@@ -96,15 +96,7 @@ Buburuebi Healthcare Team
     console.log('Email to be sent:', emailData)
 
     // TODO: Implement actual email sending with nodemailer or Resend
-    // Example with Resend:
-    // import { Resend } from 'resend'
-    // const resend = new Resend(process.env.RESEND_API_KEY)
-    // await resend.emails.send({
-    //   from: 'Buburuebi Healthcare <noreply@buburuebihealthcare.com>',
-    //   to: booking.email,
-    //   subject: emailData.subject,
-    //   text: emailData.body,
-    // })
+   
 
     return true
   } catch (error) {
@@ -139,26 +131,6 @@ ${booking.treatmentLocation ? `*Treatment Location:* ${booking.treatmentLocation
     console.log('Message:', message)
 
     // TODO: Implement WhatsApp Business API integration
-    // Option 1: Official WhatsApp Business API via Meta
-    // Option 2: Third-party services like Twilio, MessageBird, or Wati
-    
-    // Example with Meta's WhatsApp Business API:
-    // const response = await fetch(
-    //   `https://graph.facebook.com/v18.0/${process.env.WHATSAPP_PHONE_NUMBER_ID}/messages`,
-    //   {
-    //     method: 'POST',
-    //     headers: {
-    //       'Authorization': `Bearer ${process.env.WHATSAPP_ACCESS_TOKEN}`,
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       messaging_product: 'whatsapp',
-    //       to: booking.doctorWhatsApp,
-    //       type: 'text',
-    //       text: { body: message },
-    //     }),
-    //   }
-    // )
 
     return true
   } catch (error) {

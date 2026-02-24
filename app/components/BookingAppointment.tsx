@@ -36,11 +36,11 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
     setValue,
     formState: { errors },
     reset,
-    handleSubmit,
+    trigger,
   } = useForm<BookingFormValues>({
     resolver: zodResolver(bookingSchema),
     defaultValues: { serviceId: service.id },
-    mode: 'onChange', // Validate on every change
+    mode: 'onBlur',
   })
 
   const selectedTest = watch('selectedTest')
@@ -130,9 +130,10 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
   }
 
   // Step navigation
-  const proceedToPayment = handleSubmit(async () => {
-    if (!isStep1Valid) {
-      setError('Please fill in all required fields')
+  const proceedToPayment = async () => {
+    const isValid = await trigger(['name', 'email', 'phone'])
+    if (!isValid || !isStep1Valid) {
+      setError('Please fill in all required fields correctly before proceeding')
       return
     }
     setBookingState((prev) => ({
@@ -150,7 +151,7 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
       },
     }))
     setError(null)
-  })
+  }
 
   const proceedToConfirmation = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -315,21 +316,28 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
                 type="email"
                 placeholder="Enter your email"
                 {...register('email')}
+                onBlur={() => trigger('email')}
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none transition"
               />
               {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email.message}</p>}
             </div>
 
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
-              <input
-                type="tel"
-                placeholder="Enter your phone number"
-                {...register('phone')}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none transition"
+                <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number *</label>
+                <input
+                  type="tel"
+                  placeholder="e.g. 08012345678 or +234 801 234 5678"
+                  {...register('phone')}
+                  onChange={(e) => {
+                    // Only allow digits, spaces, dashes, parentheses, and + sign
+                    const cleaned = e.target.value.replace(/[^\d\s\-\(\)\+]/g, '')
+                    setValue('phone', cleaned, { shouldValidate: false }) // Don't validate on change
+                  }}
+                  onBlur={() => trigger('phone')}
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none transition"
               />
-              {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
-            </div>
+                {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone.message}</p>}
+              </div>
           </div>
 
           {/* Dynamic service-specific section */}
