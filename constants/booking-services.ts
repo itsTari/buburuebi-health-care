@@ -89,7 +89,7 @@ export const bookingServices: { [key: string]: BookingService } = {
     doctorEmail: 'treatment@buburuebihealthcare.com',
     doctorWhatsApp: '2349076167977',
     consultationFee: 4000,
-    depositAmount: 10500, // for home visits
+    depositAmount: 10000, // for home visits
     availableSlots: [
       '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
       '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM',
@@ -100,12 +100,12 @@ export const bookingServices: { [key: string]: BookingService } = {
     id: 'home',
     type: 'home',
     name: 'Home Service',
-    description: 'We come to you — quality healthcare at your doorstep',
+    description: 'We come to you  quality healthcare at your doorstep',
     doctorName: 'Dr. Home Care Specialist',
     doctorEmail: 'home@buburuebihealthcare.com',
     doctorWhatsApp: '2349076167977',
-    depositAmount: 10500,
-    consultationFee: 10500,
+    depositAmount: 10000,
+    consultationFee: 10000,
     availableSlots: [
       '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM',
       '01:00 PM', '02:00 PM', '03:00 PM', '04:00 PM',

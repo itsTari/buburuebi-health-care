@@ -64,8 +64,9 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
     const hasPersonalInfo = !!(name && email && phone)
     switch (service.type) {
       case 'consultation':
-      case 'prescription':
         return hasPersonalInfo && checkedOptions.length > 0
+      case 'prescription':
+        return hasPersonalInfo && symptoms && symptoms.length >= 5
       case 'dental':
         return hasPersonalInfo && (!!selectedTest || (!!symptoms && symptoms.length >= 5))
       case 'home':

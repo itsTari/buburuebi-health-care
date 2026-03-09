@@ -47,9 +47,9 @@ export const ServiceSection: React.FC<ServiceSectionProps> = ({
         <div className="space-y-3 mt-3">
           {[
             { id: 'general', label: 'General Consultation' },
-            { id: 'physician', label: 'Talk to a Physician Today' },
-            { id: 'learn', label: 'Learn About Your Health' },
-            { id: 'counseling', label: 'Medical Counseling' },
+            { id: 'physician', label: 'I Want to Talk to a Physician' },
+            { id: 'learn', label: 'I Want to Learn About My Health' },
+            { id: 'counseling', label: ' I Want to Receive Medical Counseling' },
           ].map((option) => {
             const isChecked = checkedOptions.includes(option.label)
             const isDisabled = !isChecked && checkedOptions.length >= 2
@@ -80,40 +80,14 @@ export const ServiceSection: React.FC<ServiceSectionProps> = ({
   // PRESCRIPTION & RECOMMENDATION
   if (service.type === 'prescription') {
     return (
-      <div className="border-t border-gray-200 pt-6">
+      < div className="border-t border-gray-200 pt-6">
         <label className="block text-sm font-semibold text-gray-700 mb-1">
-          You want prescription and recommendation? <span className="text-gray-400 font-normal">(Select up to 2)</span>
+          You want a drug prescription and recommendation? Kindly describe your symptoms to be precribed for.
         </label>
-        {checkedOptions.length === 2 && (
-          <p className="text-xs text-amber-600 mb-3">Maximum of 2 options selected.</p>
-        )}
-        <div className="space-y-3 mt-3">
-          {[
-            { id: 'unwell', label: 'I Feel Unwell' },
-            { id: 'supplements', label: 'Order Supplements' },
-          ].map((option) => {
-            const isChecked = checkedOptions.includes(option.label)
-            const isDisabled = !isChecked && checkedOptions.length >= 2
-            return (
-              <label
-                key={option.id}
-                className={`flex items-center gap-3 p-4 border-2 rounded-xl cursor-pointer transition-all
-                  ${isChecked ? 'border-blue-600 bg-blue-50' : 'border-gray-200 hover:border-blue-300'}
-                  ${isDisabled ? 'opacity-40 cursor-not-allowed' : ''}`}
-              >
-                <input
-                  type="checkbox"
-                  checked={isChecked}
-                  disabled={isDisabled}
-                  onChange={(e) => onCheckboxChange(e, option.label)}
-                  className="w-5 h-5 accent-blue-600"
-                />
-                <span className="font-medium text-gray-800">{option.label}</span>
-                {isChecked && <Check className="ml-auto w-4 h-4 text-blue-600" />}
-              </label>
-            )
-          })}
-        </div>
+        <textarea      placeholder="e.g. I have a headache, fever, and body aches for the past 3 days..."
+          value={symptoms}
+          onChange={(e) => onSymptomsInput(e.target.value)} 
+          className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 outline-none transition resize-none h-32"/>  
       </div>
     )
   }
@@ -184,7 +158,7 @@ export const ServiceSection: React.FC<ServiceSectionProps> = ({
           />
         </div>
         <p className="text-xs text-gray-500">
-          A <strong>non-refundable deposit of ₦10,500</strong> is required to confirm your booking. Final fee agreed upon arrival.
+          A <strong>non-refundable deposit of ₦10,000</strong> is required to confirm your booking. Final fee agreed upon arrival.
         </p>
       </div>
     )

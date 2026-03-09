@@ -163,7 +163,7 @@ export const services = [
     id: 7,
     title: "Home Service",
     subtitle: "Healthcare delivered right to your doorstep",
-    description: "Feeling sick and unable to visit? Our medical team comes to you. Available within Bayelsa State. A non-refundable deposit of ₦10,500 is required to confirm your booking.",
+    description: "Feeling sick and unable to visit? Our medical team comes to you. Available within Bayelsa State. A non-refundable deposit of ₦10,000 is required to confirm your booking.",
     image: "/doc.jpeg",
     cta: "Request Home Service",
     serviceId: "home"
