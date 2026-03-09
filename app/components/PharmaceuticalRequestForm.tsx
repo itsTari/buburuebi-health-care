@@ -3,27 +3,11 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
+import { pharmaceuticalSchema, PharmaceuticalFormValues } from '@/lib/pharmaceutical-validation'
 import { ChevronRight, Check, AlertCircle, Upload, X, Pill } from 'lucide-react'
 import Image from 'next/image'
 
-// Validation schema
-const pharmaceuticalSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
-  email: z.string().min(1, 'Email is required').email('Invalid email address'),
-  phone: z.string().min(1, 'Phone number is required').refine(
-    (phone) => {
-      const cleaned = phone.replace(/[\s\-\(\)\+]/g, '')
-      return /^\d{10,15}$/.test(cleaned)
-    },
-    { message: 'Phone number must be 10-15 digits' }
-  ),
-  drugNames: z.string().min(5, 'Please enter at least one drug name'),
-  deliveryAddress: z.string().min(10, 'Please enter your complete delivery address'),
-  additionalNotes: z.string().optional(),
-})
 
-type PharmaceuticalFormValues = z.infer<typeof pharmaceuticalSchema>
 
 const PharmaceuticalRequestForm = () => {
   const [loading, setLoading] = useState(false)
@@ -156,14 +140,6 @@ Please send pricing and availability details to the customer.`
             Your drug request has been sent to our pharmacy team via WhatsApp. 
             Our pharmacist will contact you shortly with pricing and delivery details.
           </p>
-          
-          <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6">
-            <p className="text-sm text-blue-900">
-              💬 <strong>What happens next?</strong><br />
-              Our pharmacist will send you a quote via WhatsApp within 30 minutes. 
-              You can discuss pricing, availability, and delivery with them directly.
-            </p>
-          </div>
 
           <button
             onClick={startOver}
@@ -343,7 +319,7 @@ Please send pricing and availability details to the customer.`
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2"
+          className="w-full bg-blue-800 hover:bg-blue-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2"
         >
           {loading ? 'Sending Request...' : 'Send Request to Pharmacist'}
           {!loading && <ChevronRight className="w-5 h-5" />}
