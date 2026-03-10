@@ -1,6 +1,15 @@
 import { Heart, Mail, Phone, Star, Zap, Shield, Leaf } from 'lucide-react'
 import { FaFacebookSquare, FaInstagramSquare, FaTiktok, FaTwitterSquare, FaWhatsapp} from "react-icons/fa";
 
+// Company and service contact information
+export const companyContact = {
+  name: 'Buburuebi Health Care',
+  doctorName: 'Dr Gabriel Buburuebi Akwasa',
+  whatsAppNumber: '2349076167977',
+  phone: '+234 907 616 7977',
+  email: 'info@buburuebihealthcare.com',
+};
+
 export const ctaslider = [
   {
     id: 0, 
@@ -57,9 +66,9 @@ export const footerSections = [
   {
     heading: 'Contact us',
     items: [
-      { icon: Mail, label: 'info@buburuebihealthcare.com', href: 'mailto:info@buburuebihealthcare.com' },
-      { icon: Phone, label: '+234 907 616 7977', href: 'tel:+2349076167977' },
-      { icon: FaWhatsapp, label: 'Chat on Watsapp', href: 'https://wa.me/2349076167977' }
+      { icon: Mail, label: companyContact.email, href: `mailto:${companyContact.email}` },
+      { icon: Phone, label: companyContact.phone, href: `tel:${companyContact.whatsAppNumber}` },
+      { icon: FaWhatsapp, label: 'Chat on Watsapp', href: `https://wa.me/${companyContact.whatsAppNumber}` }
     ]
   }
 ];
@@ -70,6 +79,7 @@ export const socialMediaLinks = [
   { icon: FaInstagramSquare, href: '#' },
   { icon: FaTiktok, href: '#' }
 ];
+
 
 export const feedbacks = [
   {
@@ -170,7 +180,7 @@ export const services = [
     title: "Home Service",
     subtitle: "Healthcare delivered right to your doorstep",
     description: "Feeling sick and unable to visit? Our medical team comes to you. Available within Bayelsa State. A non-refundable deposit of ₦10,500 is required to confirm your booking.",
-    image: "/doc.jpeg",
+    image: "/home-service.jpg",
     cta: "Request Home Service",
     serviceId: "home",
     link: "/appointments?service=home"

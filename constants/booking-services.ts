@@ -1,4 +1,5 @@
 import { BookingService, TestOption } from '@/lib/booking-types'
+import { companyContact } from '@/constants/index'
 
 export const laboratoryTestOptions: TestOption[] = [
   { id: 'blood-test', label: 'Complete Blood Count (CBC)', value: 'blood-test', description: 'Comprehensive blood analysis' },
@@ -23,9 +24,9 @@ export const bookingServices: { [key: string]: BookingService } = {
     type: 'laboratory',
     name: 'Medical Laboratory Services',
     description: 'Advanced laboratory testing and diagnostic services',
-    doctorName: 'Dr. Lab Specialist',
-    doctorEmail: 'lab@buburuebihealthcare.com',
-    doctorWhatsApp: '2349076167977',
+    doctorName: companyContact.doctorName,
+    doctorEmail: companyContact.email,
+    doctorWhatsApp: companyContact.whatsAppNumber,
     consultationFee: 4000,
     availableSlots: [
       '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
@@ -39,9 +40,9 @@ export const bookingServices: { [key: string]: BookingService } = {
     type: 'dental',
     name: 'Dental Services',
     description: 'Professional dental care for a healthy smile',
-    doctorName: 'Dr. Dental Expert',
-    doctorEmail: 'dental@buburuebihealthcare.com',
-    doctorWhatsApp: '2349076167977',
+    doctorName: companyContact.doctorName,
+    doctorEmail: companyContact.email,
+    doctorWhatsApp: companyContact.whatsAppNumber,
     consultationFee: 4000,
     availableSlots: [
       '08:00 AM', '09:00 AM', '10:00 AM', '11:00 AM',
@@ -55,9 +56,9 @@ export const bookingServices: { [key: string]: BookingService } = {
     type: 'consultation',
     name: 'Consultations & Counselling',
     description: 'Expert medical advice and mental health support',
-    doctorName: 'Dr. Consultation Specialist',
-    doctorEmail: 'consultation@buburuebihealthcare.com',
-    doctorWhatsApp: '2349076167977',
+    doctorName: companyContact.doctorName,
+    doctorEmail: companyContact.email,
+    doctorWhatsApp: companyContact.whatsAppNumber,
     consultationFee: 6000,
     availableSlots: [
       '10:00 AM', '11:00 AM', '02:00 PM', '03:00 PM',
@@ -70,9 +71,9 @@ export const bookingServices: { [key: string]: BookingService } = {
     type: 'prescription',
     name: 'Prescription & Recommendation Services',
     description: 'Personalized health recommendations and prescriptions from experts',
-    doctorName: 'Dr. Prescription Specialist',
-    doctorEmail: 'prescription@buburuebihealthcare.com',
-    doctorWhatsApp: '2349076167977',
+    doctorName: companyContact.doctorName,
+    doctorEmail: companyContact.email,
+    doctorWhatsApp: companyContact.whatsAppNumber,
     consultationFee: 4000,
     availableSlots: [
       '09:00 AM', '10:00 AM', '11:00 AM', '12:00 PM',
@@ -85,9 +86,9 @@ export const bookingServices: { [key: string]: BookingService } = {
     type: 'treatment',
     name: 'Treatments & Patient Management',
     description: 'Comprehensive treatment plans tailored for you',
-    doctorName: 'Dr. Treatment Specialist',
-    doctorEmail: 'treatment@buburuebihealthcare.com',
-    doctorWhatsApp: '2349076167977',
+    doctorName: companyContact.doctorName,
+    doctorEmail: companyContact.email,
+    doctorWhatsApp: companyContact.whatsAppNumber,
     consultationFee: 4000,
     depositAmount: 10000, // for home visits
     availableSlots: [
@@ -101,9 +102,9 @@ export const bookingServices: { [key: string]: BookingService } = {
     type: 'home',
     name: 'Home Service',
     description: 'We come to you  quality healthcare at your doorstep',
-    doctorName: 'Dr. Home Care Specialist',
-    doctorEmail: 'home@buburuebihealthcare.com',
-    doctorWhatsApp: '2349076167977',
+    doctorName: companyContact.doctorName,
+    doctorEmail: companyContact.email,
+    doctorWhatsApp: companyContact.whatsAppNumber,
     depositAmount: 10000,
     consultationFee: 10000,
     availableSlots: [

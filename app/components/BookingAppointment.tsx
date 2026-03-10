@@ -200,7 +200,7 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
       if (!response.ok) throw new Error('Failed to complete booking')
 
       const whatsappMessage = `Hello Dr. ${service.doctorName}, I have booked an appointment for ${service.name}. My name is ${bookingState.formData.name}, email: ${bookingState.formData.email}. Booked time: ${bookingState.formData.timeSlot}${bookingState.formData.location ? `. Location: ${bookingState.formData.location}` : ''}`
-      window.location.href = `https://wa.me/${service.doctorWhatsApp}?text=${encodeURIComponent(whatsappMessage)}`
+      window.open(`https://wa.me/${service.doctorWhatsApp}?text=${encodeURIComponent(whatsappMessage)}`, '_blank')
 
       if (onBookingComplete) {
         onBookingComplete(bookingState.formData as BookingFormData)

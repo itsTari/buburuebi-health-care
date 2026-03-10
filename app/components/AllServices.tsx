@@ -58,12 +58,13 @@ const AllServices = () => {
                       : 'translate-y-2 opacity-90'
                   }`}
                 >
+                <Link href={service.link || `/appointments?service=${service.serviceId}`}>
                   <Button
-                    className='w-full bg-blue-800 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:shadow-lg'
+                    className='w-full bg-blue-800 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:shadow-lg cursor-pointer'
                   >
-                    <Link href={service.link || `/appointments?service=${service.serviceId}`}>{service.cta}</Link>
-                      <span>{service.cta}</span>
+                    {service.cta}
                   </Button>
+                </Link>
                 </div>
               </div>
             </div>

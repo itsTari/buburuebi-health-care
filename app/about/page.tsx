@@ -53,7 +53,7 @@ const AboutPage = () => {
               <div className='space-y-6'>
                 <div>
                   <h2 className='text-2xl md:text-3xl font-bold text-blue-800 mb-3'>
-                    Hello, I&apos;m Mr Gabriel Akwasa
+                    Hello, I&apos;m Dr Gabriel Buburuebi Akwasa
                   </h2>
                   <p className='text-gray-600 text-lg mb-2'>
                     Founder & Chief Healthcare Officer
@@ -76,7 +76,7 @@ const AboutPage = () => {
               <div className='relative w-full max-w-md h-96 md:max-w-none md:h-125 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500'>
                 <Image
                   src='/doc.jpeg'
-                  alt='Mr Gabriel Akwasa - Founder'
+                  alt='Dr Gabriel Buburuebi Akwasa - Founder'
                   fill
                   className='object-cover hover:scale-105 transition-transform duration-500'
                   priority

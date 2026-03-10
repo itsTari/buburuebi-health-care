@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { pharmaceuticalSchema, PharmaceuticalFormValues } from '@/lib/pharmaceutical-validation'
+import { companyContact } from '@/constants'
 import { ChevronRight, Check, AlertCircle, Upload, X, Pill } from 'lucide-react'
 import Image from 'next/image'
 
@@ -84,7 +85,7 @@ ${data.additionalNotes ? `*Additional Notes:*\n${data.additionalNotes}\n\n` : ''
 Please send pricing and availability details to the customer.`
 
       // Send to API (optional - for record keeping)
-      const response = await fetch('/api/pharmaceutical-requests', {
+      const response = await fetch('/api/pharmaceutical-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -99,11 +100,8 @@ Please send pricing and availability details to the customer.`
       }
 
       // Redirect to WhatsApp with the message
-      const doctorWhatsApp = '2349076167977' // Replace with actual pharmacy WhatsApp
       const encodedMessage = encodeURIComponent(whatsappMessage)
-      
-      // Open WhatsApp
-      window.open(`https://wa.me/${doctorWhatsApp}?text=${encodedMessage}`, '_blank')
+      window.open(`https://wa.me/${companyContact.whatsAppNumber}?text=${encodedMessage}`, '_blank')
 
       // Show success message
       setSuccess(true)
