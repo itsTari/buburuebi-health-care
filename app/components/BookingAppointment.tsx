@@ -199,7 +199,7 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
       })
       if (!response.ok) throw new Error('Failed to complete booking')
 
-      const whatsappMessage = `Hello Dr. ${service.doctorName}, I have booked an appointment for ${service.name}. My name is ${bookingState.formData.name}, email: ${bookingState.formData.email}. Booked time: ${bookingState.formData.timeSlot}${bookingState.formData.location ? `. Location: ${bookingState.formData.location}` : ''}`
+      const whatsappMessage = `Hello Dr. ${service.doctorName},\n I have booked an appointment for ${service.name}.\n My name is *${bookingState.formData.name}*, email: *${bookingState.formData.email}*.\n Booked time: ${bookingState.formData.timeSlot}.\n${bookingState.formData.location ? ` *Location:* ${bookingState.formData.location}.\n` : ''}${bookingState.formData.symptoms ? ` *Symptoms/Selection:* ${bookingState.formData.symptoms}.\n` : ''}${bookingState.formData.selectedTest ? ` *Selected Option:* ${bookingState.formData.selectedTest}.` : ''}`
       window.open(`https://wa.me/${service.doctorWhatsApp}?text=${encodeURIComponent(whatsappMessage)}`, '_blank')
 
       if (onBookingComplete) {
@@ -439,7 +439,7 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
               disabled={loading || !timeSlot}
               className="flex-1 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold py-3 rounded-lg transition-all"
             >
-              {loading ? 'Processing...' : 'Confirm & Proceed'}
+              {loading ? 'Processing...' : 'Proceed'}
             </button>
           </div>
         </form>
@@ -508,7 +508,7 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
             💬 Dr. {service.doctorName} will be notified via WhatsApp
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-col md:flex-row  gap-3">
             <button
               type="button"
               onClick={resetBooking}
@@ -522,7 +522,7 @@ const BookingAppointment: React.FC<BookingAppointmentProps> = ({
               className="flex-1 bg-green-600 hover:bg-green-700 disabled:opacity-50 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2"
             >
               {loading ? 'Completing...' : 'Complete Booking & Message Doctor'}
-              {!loading && <ChevronRight className="w-5 h-5" />}
+              {!loading && <ChevronRight className="w-5 h-5 hidden md:flex" />}
             </button>
           </div>
         </form>

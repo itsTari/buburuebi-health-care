@@ -7,10 +7,18 @@ import { values } from '../../constants'
 
 const AboutPage = () => {
   const [scrollProgress, setScrollProgress] = useState(0)
+  const [heroVisible, setHeroVisible] = useState(false)
+  const [aboutVisible, setAboutVisible] = useState(false)
+  const [valuesVisible, setValuesVisible] = useState(false)
+  const [ctaVisible, setCtaVisible] = useState(false)
+  
   const sectionRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
+  const heroRef = useRef<HTMLDivElement>(null)
+  const aboutRef = useRef<HTMLDivElement>(null)
+  const ctaRef = useRef<HTMLDivElement>(null)
 
-  
+  // Scroll animation for timeline progress
   useEffect(() => {
     const handleScroll = () => {
       if (!gridRef.current) return
@@ -19,19 +27,16 @@ const AboutPage = () => {
       const gridHeight = gridRef.current.getBoundingClientRect().height
       const windowHeight = window.innerHeight
 
-      // If grid hasn't entered viewport yet, keep it gray
       if (gridTop > windowHeight) {
         setScrollProgress(0)
         return
       }
 
-      // If grid has completely passed, make it fully blue
       if (gridTop < -gridHeight) {
         setScrollProgress(1)
         return
       }
 
-      // Grid is in viewport, calculate progress
       const progress = (windowHeight - gridTop) / (windowHeight + gridHeight)
       setScrollProgress(Math.max(0, Math.min(1, progress)))
     }
@@ -41,12 +46,54 @@ const AboutPage = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Scroll animations for each section
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    }
+
+    const heroObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setHeroVisible(true)
+    }, observerOptions)
+
+    const aboutObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setAboutVisible(true)
+    }, observerOptions)
+
+    const valuesObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setValuesVisible(true)
+    }, observerOptions)
+
+    const ctaObserver = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setCtaVisible(true)
+    }, observerOptions)
+
+    if (heroRef.current) heroObserver.observe(heroRef.current)
+    if (aboutRef.current) aboutObserver.observe(aboutRef.current)
+    if (sectionRef.current) valuesObserver.observe(sectionRef.current)
+    if (ctaRef.current) ctaObserver.observe(ctaRef.current)
+
+    return () => {
+      heroObserver.disconnect()
+      aboutObserver.disconnect()
+      valuesObserver.disconnect()
+      ctaObserver.disconnect()
+    }
+  }, [])
+
   return (
     <div className='w-full'>
-      <section className='w-full pt-30 pb-16 md:pb-24 px-5 md:px-10'>
+      {/* Hero Section */}
+      <section 
+        ref={heroRef}
+        className={`w-full pt-30 pb-16 md:pb-24 px-5 md:px-10 transition-all duration-1000 ${
+          heroVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+        }`}
+      >
         <div className='max-w-6xl mx-auto'>
           <div className='flex flex-col-reverse md:flex-row gap-8 md:gap-12 items-center'>
-            <div className='animate-fade-in md:flex-1'>
+            <div className='md:flex-1'>
               <h1 className='text-4xl md:text-5xl font-bold text-gray-900 mb-6'>
                 Nice to meet you
               </h1>
@@ -71,8 +118,7 @@ const AboutPage = () => {
               </div>
             </div>
 
-            {/* Image */}
-            <div className='animate-slide-up flex justify-center w-full shrink-0 md:flex-1'>
+            <div className='flex justify-center w-full shrink-0 md:flex-1'>
               <div className='relative w-full max-w-md h-96 md:max-w-none md:h-125 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500'>
                 <Image
                   src='/doc.jpeg'
@@ -89,7 +135,12 @@ const AboutPage = () => {
       </section>
 
       {/* About Buburuebi Section */}
-      <section className='w-full py-16 md:py-24 px-5 md:px-10 bg-white'>
+      <section 
+        ref={aboutRef}
+        className={`w-full py-16 md:py-24 px-5 md:px-10 bg-white transition-all duration-1000 ${
+          aboutVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+        }`}
+      >
         <div className='max-w-6xl mx-auto'>
           <div className='mb-16'>
             <h2 className='text-3xl md:text-4xl font-bold text-gray-900 mb-6'>
@@ -132,7 +183,12 @@ const AboutPage = () => {
       </section>
 
       {/* Core Values Section*/}
-      <section ref={sectionRef} className='w-full py-16 md:py-24 px-5 md:px-10'>
+      <section 
+        ref={sectionRef} 
+        className={`w-full py-16 md:py-24 px-5 md:px-10 transition-all duration-1000 ${
+          valuesVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+        }`}
+      >
         <div className='mx-auto'>
           <div ref={gridRef} className='grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-start'>
             <div className='flex flex-col md:gap-5 gap-2 '>
@@ -140,14 +196,13 @@ const AboutPage = () => {
               <h2 className='text-xl md:text-4xl font-bold text-gray-700 mb-6 md:mb-0'>
                 Here&apos;s All The Ways We&apos;re Different
               </h2>
+              <Image src='/illustration.jpg' width={800} height={800} alt='Our Service Difference' />
             </div>
             
             <div className='relative'>
               {/* Vertical Lines */}
               <div className='hidden md:block absolute left-6 top-0 bottom-0 w-0.5'>
-                {/* Background gray line */}
                 <div className='absolute inset-0 bg-gray-200 w-full'></div>
-                {/* Blue fill line */}
                 <div
                   className='absolute inset-x-0 top-0 bg-blue-600 w-full'
                   style={{
@@ -165,7 +220,6 @@ const AboutPage = () => {
                       key={index}
                       className='flex gap-6 md:gap-8 md:pl-20'
                     >
-                      {/* Icon Container */}
                       <div className='shrink-0 md:absolute md:left-0 flex items-start'>
                         <div className='w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-shadow duration-300'>
                           <div className='w-9 h-9 bg-blue-200 rounded-full flex items-center justify-center'>
@@ -174,7 +228,6 @@ const AboutPage = () => {
                         </div>
                       </div>
 
-                      {/* Content */}
                       <div className='flex-1 pt-1 md:pt-0'>
                         <h3 className='text-sm md:text-xl font-bold text-gray-800 md:text-gray-700 mb-2'>
                           {value.title}
@@ -192,7 +245,13 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section className='w-full py-16 md:py-24 px-5 md:px-10 bg-blue-800'>
+      {/* CTA Section */}
+      <section 
+        ref={ctaRef}
+        className={`w-full py-16 md:py-24 px-5 md:px-10 bg-blue-800 transition-all duration-1000 ${
+          ctaVisible ? 'translate-y-0 opacity-100' : 'translate-y-20 opacity-0'
+        }`}
+      >
         <div className='max-w-4xl mx-auto text-center'>
           <h2 className='text-3xl md:text-4xl font-bold text-white mb-6'>
             Join Our Healthcare Community

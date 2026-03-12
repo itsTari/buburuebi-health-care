@@ -46,12 +46,18 @@ const PharmaceuticalRequestForm = () => {
       }
 
       setImageFile(file)
+      
+      // Create preview for display
       const reader = new FileReader()
       reader.onloadend = () => {
         setUploadedImage(reader.result as string)
+        setError(null)
+      }
+      reader.onerror = () => {
+        setError('Failed to read image file')
+        setImageFile(null)
       }
       reader.readAsDataURL(file)
-      setError(null)
     }
   }
 
@@ -62,13 +68,34 @@ const PharmaceuticalRequestForm = () => {
   }
 
   // Submit form
-  const onSubmit = async (data: PharmaceuticalFormValues) => {
-    setLoading(true)
-    setError(null)
+ // Submit form
+const onSubmit = async (data: PharmaceuticalFormValues) => {
+  setLoading(true)
+  setError(null)
 
-    try {
-      // Prepare WhatsApp message
-      const whatsappMessage = `🔔 *New Drug Request*
+  try {
+    let imageUrl = null
+
+    // Upload image if provided
+    if (imageFile) {
+      const formData = new FormData()
+      formData.append('file', imageFile)
+
+      const uploadResponse = await fetch('/api/upload', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (!uploadResponse.ok) {
+        throw new Error('Failed to upload image')
+      }
+
+      const uploadData = await uploadResponse.json()
+      imageUrl = uploadData.url
+    }
+
+    // Prepare WhatsApp message
+    const whatsappMessage = ` *New Drug Request*
 
 *Customer Information:*
 Name: ${data.name}
@@ -81,40 +108,41 @@ ${data.drugNames}
 *Delivery Address:*
 ${data.deliveryAddress}
 
-${data.additionalNotes ? `*Additional Notes:*\n${data.additionalNotes}\n\n` : ''}${uploadedImage ? '*📷 Prescription/Drug Photo:* Attached in separate message\n\n' : ''}*Next Steps:*
-Please send pricing and availability details to the customer.`
+${data.additionalNotes ? `*Additional Notes:*\n${data.additionalNotes}\n\n` : ''}${imageUrl ? `*Prescription/Drug Photo:*\n${window.location.origin}${imageUrl}\n\n` : ''}`
 
-      // Send to API (optional - for record keeping)
-      const response = await fetch('/api/pharmaceutical-request', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          ...data,
-          hasImage: !!uploadedImage,
-          createdAt: new Date().toISOString(),
-        }),
-      })
+    // Send to API (optional - for record keeping)
+    const response = await fetch('/api/pharmaceutical-request', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        ...data,
+        hasImage: !!imageUrl,
+        imageUrl: imageUrl,
+        createdAt: new Date().toISOString(),
+      }),
+    })
 
-      if (!response.ok) {
-        console.warn('Failed to save request to database, but continuing to WhatsApp')
-      }
+    if (!response.ok) {
+      console.warn('Failed to save request to database, but continuing to WhatsApp')
+    }
 
-      // Redirect to WhatsApp with the message
-      const encodedMessage = encodeURIComponent(whatsappMessage)
-      window.open(`https://wa.me/${companyContact.whatsAppNumber}?text=${encodedMessage}`, '_blank')
+    // Open WhatsApp 
+    const encodedMessage = encodeURIComponent(whatsappMessage)
+    const whatsappURL = `https://wa.me/${companyContact.whatsAppNumber}?text=${encodedMessage}`
+    window.open(whatsappURL, '_blank')
 
-      // Show success message
       setSuccess(true)
       reset()
       setUploadedImage(null)
       setImageFile(null)
+  
 
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to submit request. Please try again.')
-    } finally {
-      setLoading(false)
-    }
+  } catch (err) {
+    setError(err instanceof Error ? err.message : 'Failed to submit request. Please try again.')
+  } finally {
+    setLoading(false)
   }
+}
 
   // Reset and start over
   const startOver = () => {

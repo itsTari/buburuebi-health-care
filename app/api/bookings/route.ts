@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { sendEmail } from '@/lib/mailer'
 
 interface BookingRequestBody {
   name: string
@@ -69,35 +70,62 @@ export async function POST(request: NextRequest) {
 
 async function sendConfirmationEmail(booking: BookingRequestBody) {
   try {
-    const emailData = {
+    const html = `
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+    .header { background-color: #0066cc; color: white; padding: 20px; border-radius: 5px; text-align: center;}
+    .content { background-color: #f9f9f9; padding: 20px; border-radius: 5px; margin: 20px 0; }
+    .detail { margin: 10px 0; }
+    .label { font-weight: bold; color: #0066cc; }
+    .footer { color: #666; font-size: 12px; text-align: center; margin-top: 30px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h2>Appointment Confirmed \n B.B.H CARE'S CLINIC</h2>
+    </div>
+    
+    <div class="content">
+      <p>Dear ${booking.name},</p>
+      
+      <p>Your appointment has been successfully booked. We look forward to seeing you!</p>
+      
+      <h3>Appointment Details:</h3>
+      <div class="detail"><span class="label">Service:</span> ${booking.serviceName}</div>
+      <div class="detail"><span class="label">Date & Time:</span> ${booking.timeSlot}</div>
+      <div class="detail"><span class="label">Doctor:</span> ${booking.doctorName}</div>
+      ${booking.selectedTest ? `<div class="detail"><span class="label">Selected Option:</span> ${booking.selectedTest}</div>` : ''}
+      ${booking.symptoms ? `<div class="detail"><span class="label">Details/Symptoms:</span> ${booking.symptoms}</div>` : ''}
+      ${booking.location ? `<div class="detail"><span class="label">Location:</span> ${booking.location}</div>` : ''}
+      ${booking.treatmentLocation ? `<div class="detail"><span class="label">Treatment Location:</span> ${booking.treatmentLocation === 'clinic' ? 'At the Clinic' : 'Home Service'}</div>` : ''}
+      
+      <p style="margin-top: 20px; padding: 15px; background-color: #fff3cd; border-radius: 5px;">
+        <strong>📞 Expected Contact:</strong> Our doctor will contact you shortly via WhatsApp or phone to confirm final details.
+      </p>
+      
+      <p>If you need to reschedule or have any questions, please don't hesitate to contact us.</p>
+    </div>
+    
+    <div class="footer">
+      <p>Best regards,<br/> B.B.H CARE'S CLINIC TEAM</p>
+    </div>
+  </div>
+</body>
+</html>
+    `
+
+    await sendEmail({
       to: booking.email,
-      subject: `Appointment Confirmation - ${booking.serviceName}`,
-      body: `
-Dear ${booking.name},
+      subject: `Appointment Confirmation \n ${booking.serviceName}`,
+      html: html,
+    })
 
-Your appointment has been successfully booked.
-
-Service: ${booking.serviceName}
-Date & Time: ${booking.timeSlot}
-Doctor: ${booking.doctorName}
-
-${booking.selectedTest ? `Selected Option: ${booking.selectedTest}` : ''}
-${booking.symptoms ? `Details/Symptoms: ${booking.symptoms}` : ''}
-${booking.location ? `Location/Address: ${booking.location}` : ''}
-${booking.treatmentLocation ? `Treatment Location: ${booking.treatmentLocation === 'clinic' ? 'At the Clinic' : 'Home Service'}` : ''}
-
-You will receive further communication from our team shortly.
-
-Best regards,
-Buburuebi Healthcare Team
-      `,
-    }
-
-    console.log('Email to be sent:', emailData)
-
-    // TODO: Implement actual email sending with nodemailer or Resend
-   
-
+    console.log('Confirmation email sent to:', booking.email)
     return true
   } catch (error) {
     console.error('Email sending error:', error)
@@ -108,7 +136,7 @@ Buburuebi Healthcare Team
 async function sendWhatsAppNotification(booking: BookingRequestBody) {
   try {
     const message = `
-📋 *New Appointment Booking*
+ *New Appointment Booking*
 
 *Patient Information:*
 Name: ${booking.name}

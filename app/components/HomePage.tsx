@@ -23,7 +23,7 @@ const HomePage = () => {
   return (
     <section
       style={{ backgroundImage: 'url(/doc.jpeg)' }}
-      className="relative min-h-screen flex items-center p-10 bg-cover bg-center bg-no-repeat"
+      className="relative min-h-screen flex items-center p-10 bg-cover bg-center bg-no-repeat" 
     >
       <div className="absolute inset-0 bg-black opacity-30" />
 
